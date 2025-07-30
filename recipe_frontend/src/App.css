@@ -1,0 +1,310 @@
+/* CSS Variables for Theme Management */
+:root {
+  /* Light theme colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #282c34;
+  --text-secondary: #61dafb;
+  --border-color: #e9ecef;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --border-color: #404040;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+}
+
+.App {
+  text-align: center;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: var(--bg-secondary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+/* --- Main Layout for Recipe App --- */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+/* --- Header --- */
+.header {
+  width: 100vw;
+  height: 60px;
+  background: linear-gradient(90deg, #388e3c 80%, #aed581 100%);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(56,142,60,0.08);
+}
+.header-title { font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.02em;}
+.header-userarea { display: flex; align-items: center;}
+.greet { margin-right: 1rem; font-size: 0.92rem;}
+.btn-logout { background: #ffa726; color: #fff; margin-left: 0.85rem; border: none; border-radius: 6px; padding: 7px 16px; cursor: pointer;}
+.btn-logout:hover { background: #ff9800; }
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 220px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 28px 18px 18px 18px;
+  min-height: calc(100vh - 60px);
+}
+.sidebar-search { display: flex; gap: 0.5rem;}
+.sidebar-search input {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #aed581;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.sidebar-search .btn {
+  padding: 7px 14px;
+  background: #aed581;
+  color: #222;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 7px; margin-top: 1.5rem;}
+.nav-link { background: none; border: none; color: #388e3c; cursor: pointer; padding: 7px 0; font-size: 1.07rem; text-align: left;}
+.nav-link.active, .nav-link:hover { background: #ffa72633; color: #ffa726; border-radius: 5px;}
+
+/* -- Main Content Area -- */
+.main-content {
+  flex: 1 1 auto;
+  padding: 34px 42px;
+  background: var(--bg-primary);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -- Toolbar -- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.btn-large {
+  padding: 0.7rem 1.7rem;
+  font-size: 1.13rem;
+  border-radius: 7px;
+  background: #388e3c;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-large:hover { background: #459a48; }
+.refresh-label { color: #bbb; font-size: 0.98rem; margin-left: 2rem;}
+
+/* --- Recipe List & Cards --- */
+.recipe-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.recipe-card {
+  background: #fff;
+  border: 1.5px solid #aed581;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(56, 142, 60, 0.08);
+  cursor: pointer;
+  padding: 1.2rem 1rem 0.9rem 1rem;
+  transition: box-shadow 0.18s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.recipe-card:hover { box-shadow: 0 4px 18px #ffa72621; }
+.recipe-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.recipe-title { font-size: 1.15rem; font-weight: 600; color: #388e3c;}
+.star-btn {
+  font-size: 1.24rem;
+  border: none;
+  background: none;
+  color: #ffa726;
+  cursor: pointer;
+}
+.recipe-meta { font-size: 0.95rem; color: #607d8b; display: flex; gap: 20px; margin-bottom: 4px; }
+.recipe-description { color: #222; font-size: 1rem; padding-top: 2px;}
+.no-recipes { font-size: 1.13rem; color: #aaa; text-align: center; padding: 40px 0;}
+
+/* --- Recipe Detail Page --- */
+.recipe-detail {
+  max-width: 640px;
+  margin: auto;
+  background: #fff;
+  border-radius: 11px;
+  box-shadow: 0 6px 32px rgba(56,142,60,0.1);
+  padding: 2.8rem 2.7rem 2.3rem;
+}
+.recipe-detail h2 { margin-bottom: 1.1rem; color: #388e3c;}
+.meta-row { color: #607d8b; font-size: 1.04rem; margin-bottom: 0.7rem; display: flex; gap: 22px;}
+.detail-description { font-size: 1.12rem; color: #1a1a1a;}
+.recipe-detail ul, .recipe-detail ol { text-align: left; margin-top: 0.75rem; margin-left: 2rem;}
+.recipe-detail .detail-actions { margin-top: 2.7rem;}
+.btn-edit, .btn-delete { padding: 9px 24px; font-weight: 700; border-radius: 8px; border: none; font-size: 1.04rem;}
+.btn-edit { background: #ffa726; color: #fff; margin-right: 17px;}
+.btn-edit:hover { background: #ff9800;}
+.btn-delete { background: #e53935; color: #fff; }
+.btn-delete:hover { background: #b71c1c; }
+
+/* -- Recipe Form -- */
+.recipe-form {
+  background: #fff;
+  padding: 2.7rem 2.4rem 2.2rem 2.4rem;
+  border-radius: 13px;
+  max-width: 620px;
+  margin: auto;
+  box-shadow: 0 4px 24px #388e3c18;
+  display: flex; flex-direction: column; gap: 1.4rem;
+}
+.recipe-form h2 { margin-bottom: 10px; color: #388e3c;}
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-row label { flex: 1; }
+.recipe-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #455A64;
+  margin-bottom: 8px;
+  font-size: 0.98rem;
+}
+.recipe-form input, .recipe-form textarea {
+  margin-top: 4px;
+  padding: 8px 12px;
+  font-size: 1.03rem;
+  border: 1px solid #aed581;
+  border-radius: 6px;
+  background: #f8f9fa;
+}
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  justify-content: flex-end;
+}
+.btn-save { background: #388e3c; color: #fff;}
+.btn-save:hover { background: #21732b;}
+.btn-cancel { background: #7986cb; color: #fff;}
+.btn-cancel:hover { background: #3f51b5;}
+
+/* -- Auth Forms -- */
+.auth-app {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #fff;
+}
+.auth-form {
+  display: flex; flex-direction: column; gap: 1.1rem; min-width: 340px; max-width: 400px; margin: auto; background: #f9fbe7; border-radius: 12px; padding: 2.4rem 2.2rem 2.2rem 2.2rem; box-shadow: 0 8px 32px #388e3c19;
+}
+.auth-form h2 { color: #388e3c; margin-bottom: 0.2rem;}
+.auth-form input { padding: 10px 15px; font-size: 1.07rem; border-radius: 7px; border: 1.5px solid #aed581;}
+.btn-auth { background: #388e3c; color: #fff; font-weight: 700; border: none; border-radius: 8px; padding: 11px;}
+.btn-auth:hover { background: #1b5e20;}
+.switch-auth { background: none; color: #ffa726; border: none; margin-top: 10px; font-size: 1.03rem; cursor: pointer;}
+.error { color: #e53935; margin-top: -8px; margin-bottom: 6px; font-size: 0.99rem;}
+
+/* -- General Utility -- */
+.app-loading { color: #388e3c; font-size: 1.25rem; padding: 90px 0; }
+
+.App-link {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0.9;
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
